@@ -37,13 +37,14 @@ let cars = [
   { make: "Porsche", model: "911", year: 1989, engine: "903" },
   { make: "Bmw", model: "M3", year: 2025, engine: "S58" },
   { make: "Nissan", model: "Silvia", year: 2000, engine: "SR20ET"},
-  { make: "Nissan", model: "Gtr", year: 2015, engine: "VR38DET"}
+  { make: "Nissan", model: "Gtr", year: 2015, engine: "VR38DET"},
+  { make: "Chevrolet", model: "Corevette", year: 2009, engine: "LS9"}
 ];
 // Your final submission should have much more data than this, and
 // you should use more than just an array of strings to store it all.
 
 // This function adds cards the page to display the data in the array
-function showCards() {
+function showCars() {
   const cardContainer = document.getElementById("card-container");
   cardContainer.innerHTML = "";
   const templateCard = document.querySelector(".card");
@@ -63,7 +64,7 @@ function showCards() {
     }
 
     const nextCard = templateCard.cloneNode(true); // Copy the template card
-    editCardContent(nextCard, title, imageURL); // Edit title and image
+    editCardContent(nextCard, car.model, imageURL); // Edit title and image
     cardContainer.appendChild(nextCard); // Add new card to the container
   }
 }
@@ -85,7 +86,7 @@ function editCardContent(card, newTitle, newImageURL) {
 }
 
 // This calls the addCards() function when the page is first loaded
-document.addEventListener("DOMContentLoaded", showCards);
+document.addEventListener("DOMContentLoaded", showCars);
 
 function quoteAlert() {
   console.log("Button Clicked!");
@@ -95,6 +96,6 @@ function quoteAlert() {
 }
 
 function removeLastCard() {
-  titles.pop(); // Remove last item in titles array
-  showCards(); // Call showCards again to refresh
+  cars.pop(); // Remove last item in titles array
+  showCars(); // Call showCards again to refresh
 }
