@@ -65,8 +65,15 @@ function showCars() {
 
     const nextCard = templateCard.cloneNode(true); // Copy the template card
     editCardContent(nextCard, car.model, imageURL); // Edit title and image
+    sortCars(car.make, car.make);
     cardContainer.appendChild(nextCard); // Add new card to the container
   }
+}
+
+function sortCars(a, b) {
+  //single car in the array
+  return
+  
 }
 
 function editCardContent(card, newTitle, newImageURL) {
