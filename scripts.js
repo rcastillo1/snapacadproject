@@ -30,11 +30,14 @@ const CURB_POSTER_URL =
 const EAST_LOS_HIGH_POSTER_URL =
   "https://static.wikia.nocookie.net/hulu/images/6/64/East_Los_High.jpg";
 
-// This is an array of strings (TV show titles)
-let titles = [
-  "Fresh Prince of Bel Air",
-  "Curb Your Enthusiasm",
-  "East Los High",
+// array of car objects.
+let cars = [
+  { make: "Honda", model: "Ek", year: 1998, engine: "D16Y7" } ,
+  { make: "Acura", model: "Integra", year: 2000, engine: "B18b1" },
+  { make: "Porsche", model: "911", year: 1989, engine: "903" },
+  { make: "Bmw", model: "M3", year: 2025, engine: "S58" },
+  { make: "Nissan", model: "Silvia", year: 2000, engine: "SR20ET"},
+  { make: "Nissan", model: "Gtr", year: 2015, engine: "VR38DET"}
 ];
 // Your final submission should have much more data than this, and
 // you should use more than just an array of strings to store it all.
@@ -45,8 +48,8 @@ function showCards() {
   cardContainer.innerHTML = "";
   const templateCard = document.querySelector(".card");
 
-  for (let i = 0; i < titles.length; i++) {
-    let title = titles[i];
+  for (let i = 0; i < cars.length; i++) {
+    let car = cars[i];
 
     // This part of the code doesn't scale very well! After you add your
     // own data, you'll need to do something totally different here.
