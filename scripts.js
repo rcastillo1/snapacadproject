@@ -26,18 +26,17 @@
 
 // array of car objects.
 let cars = [
-  { make: "Honda", model: "Ek", year: 1998, engine: "D16Y7", imageURL: "https://www.reddit.com/r/Honda/comments/ctlb3k/1998_civic_dx_hatchback_one_of_my_favorite_cars/" } ,
-  { make: "Acura", model: "Integra", year: 2000, engine: "B18b1" },
-  { make: "Porsche", model: "911", year: 1989, engine: "903" },
-  { make: "Bmw", model: "M3", year: 2025, engine: "S58" },
-  { make: "Nissan", model: "Silvia", year: 2000, engine: "SR20ET"},
-  { make: "Nissan", model: "Gtr", year: 2015, engine: "VR38DET"},
-  { make: "Chevrolet", model: "Corevette", year: 2009, engine: "LS9"}
+  { make: "Honda", model: "Ek", year: 1998, engine: "D16Y7", imageURL: "images/ekpic.jpeg" } ,
+  { make: "Acura", model: "Integra", year: 2000, engine: "B18b1", imageURL: "images/integraimg.jpeg" },
+  { make: "Porsche", model: "911", year: 1989, engine: "903", imageURL: "images/911pic.jpeg" },
+  { make: "Bmw", model: "M3", year: 2025, engine: "S58", imageURL: "images/m3pic.jpeg" },
+  { make: "Nissan", model: "Silvia", year: 2000, engine: "SR20ET", imageURL: "images/s15pic.webp"},
+  { make: "Nissan", model: "Gtr", year: 2015, engine: "VR38DET", imageURL: "images/r35pic.jpeg"},
+  { make: "Chevrolet", model: "Corevette", year: 2009, engine: "LS9", imageURL: "images/zr1 pic.jpg"}
 ];
-// Your final submission should have much more data than this, and
-// you should use more than just an array of strings to store it all.
 
-// This function adds cards the page to display the data in the array
+
+// This function adds cars the page to display the data in the array
 function showCars() {
 
   const cardContainer = document.getElementById("card-container");
@@ -52,14 +51,14 @@ function showCars() {
   
    
     const nextCard = templateCard.cloneNode(true); // Copy the template card
-    editCardContent(nextCard, car.model, imageURL); // Edit title and image
+    editCarContent(nextCard, car.model, imageURL); // Edit title and image
     cardContainer.appendChild(nextCard); // Add new card to the container
   }
 }
 
 
 
-function editCardContent(card, newTitle, newImageURL) {
+function editCarContent(card, newTitle, newImageURL) {
   card.style.display = "block";
 
   const cardHeader = card.querySelector("h2");
@@ -68,6 +67,19 @@ function editCardContent(card, newTitle, newImageURL) {
   const cardImage = card.querySelector("img");
   cardImage.src = newImageURL;
   cardImage.alt = newTitle + " Poster";
+
+  //creating the button
+  const deleteBtn = document.createElement("button");
+  //putting the x as the button
+  deleteBtn.textContent = "✕";
+  
+  //delets the object out the array
+  deleteBtn.addEventListener("click", () => {
+    cars = cars.filter(car => car.model !== newTitle);
+    showCars();
+  });
+  //put the button onto the car 
+  card.appendChild(deleteBtn);
 
   // You can use console.log to help you debug!
   // View the output by right clicking on your website,
@@ -96,7 +108,7 @@ function sortZA() {
   showCars();
 }
 
-// This calls the addCards() function when the page is first loaded
+// This calls the addCard() function when the page is first loaded
 document.addEventListener("DOMContentLoaded", showCars);
 
 function quoteAlert() {
@@ -106,7 +118,7 @@ function quoteAlert() {
   );
 }
 
-function removeLastCard() {
+function removeLastCar() {
   cars.pop(); // Remove last item in titles array
   showCars(); // Call showCards again to refresh
 }
