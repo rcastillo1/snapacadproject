@@ -39,17 +39,11 @@ let cars = [
 
 // This function adds cards the page to display the data in the array
 function showCars() {
+  
   const cardContainer = document.getElementById("card-container");
   cardContainer.innerHTML = "";
   const templateCard = document.querySelector(".card");
 
-  /*
-  cars.sort((a, b) => {
-    if (a.model < b.model) return -1;
-    if (a.model > b.model) return 1;
-    return 0;
-  });
-  */
   for (let i = 0; i < cars.length; i++) {
     //creating a var for each car
     let car = cars[i];
@@ -81,6 +75,8 @@ function editCardContent(card, newTitle, newImageURL) {
   console.log("new card:", newTitle, "- html: ", card);
 }
 
+
+//sorts the cars acending order.
 function sortAZ() {
   cars.sort((a, b) => {
     if (a.model < b.model) return -1;
@@ -103,4 +99,8 @@ function quoteAlert() {
 function removeLastCard() {
   cars.pop(); // Remove last item in titles array
   showCars(); // Call showCards again to refresh
+}
+
+function deleteCar(){
+
 }
