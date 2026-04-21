@@ -23,16 +23,10 @@
  *
  */
 
-const FRESH_PRINCE_URL =
-  "https://upload.wikimedia.org/wikipedia/en/3/33/Fresh_Prince_S1_DVD.jpg";
-const CURB_POSTER_URL =
-  "https://m.media-amazon.com/images/M/MV5BZDY1ZGM4OGItMWMyNS00MDAyLWE2Y2MtZTFhMTU0MGI5ZDFlXkEyXkFqcGdeQXVyMDc5ODIzMw@@._V1_FMjpg_UX1000_.jpg";
-const EAST_LOS_HIGH_POSTER_URL =
-  "https://static.wikia.nocookie.net/hulu/images/6/64/East_Los_High.jpg";
 
 // array of car objects.
 let cars = [
-  { make: "Honda", model: "Ek", year: 1998, engine: "D16Y7" } ,
+  { make: "Honda", model: "Ek", year: 1998, engine: "D16Y7", imageURL: "https://www.reddit.com/r/Honda/comments/ctlb3k/1998_civic_dx_hatchback_one_of_my_favorite_cars/" } ,
   { make: "Acura", model: "Integra", year: 2000, engine: "B18b1" },
   { make: "Porsche", model: "911", year: 1989, engine: "903" },
   { make: "Bmw", model: "M3", year: 2025, engine: "S58" },
@@ -49,32 +43,27 @@ function showCars() {
   cardContainer.innerHTML = "";
   const templateCard = document.querySelector(".card");
 
+  /*
+  cars.sort((a, b) => {
+    if (a.model < b.model) return -1;
+    if (a.model > b.model) return 1;
+    return 0;
+  });
+  */
   for (let i = 0; i < cars.length; i++) {
+    //creating a var for each car
     let car = cars[i];
-
-    // This part of the code doesn't scale very well! After you add your
-    // own data, you'll need to do something totally different here.
-    let imageURL = "";
-    if (i == 0) {
-      imageURL = FRESH_PRINCE_URL;
-    } else if (i == 1) {
-      imageURL = CURB_POSTER_URL;
-    } else if (i == 2) {
-      imageURL = EAST_LOS_HIGH_POSTER_URL;
-    }
-
+    //creating a variable for the image 
+    let imageURL = car.imageURL;
+  
+   
     const nextCard = templateCard.cloneNode(true); // Copy the template card
     editCardContent(nextCard, car.model, imageURL); // Edit title and image
-    sortCars(car.make, car.make);
     cardContainer.appendChild(nextCard); // Add new card to the container
   }
 }
 
-function sortCars(a, b) {
-  //single car in the array
-  return
-  
-}
+
 
 function editCardContent(card, newTitle, newImageURL) {
   card.style.display = "block";
@@ -90,6 +79,15 @@ function editCardContent(card, newTitle, newImageURL) {
   // View the output by right clicking on your website,
   // select "Inspect", then click on the "Console" tab
   console.log("new card:", newTitle, "- html: ", card);
+}
+
+function sortAZ() {
+  cars.sort((a, b) => {
+    if (a.model < b.model) return -1;
+    if (a.model > b.model) return 1;
+    return 0;
+  });
+  showCars();
 }
 
 // This calls the addCards() function when the page is first loaded
