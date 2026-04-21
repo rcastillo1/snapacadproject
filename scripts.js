@@ -51,14 +51,14 @@ function showCars() {
   
    
     const nextCard = templateCard.cloneNode(true); // Copy the template card
-    editCarContent(nextCard, car.model, imageURL); // Edit title and image
+    editCarContent(nextCard, car.model, imageURL, car); // Edit title and image
     cardContainer.appendChild(nextCard); // Add new card to the container
   }
 }
 
 
 
-function editCarContent(card, newTitle, newImageURL) {
+function editCarContent(card, newTitle, newImageURL, car) {
   card.style.display = "block";
 
   const cardHeader = card.querySelector("h2");
@@ -67,6 +67,12 @@ function editCarContent(card, newTitle, newImageURL) {
   const cardImage = card.querySelector("img");
   cardImage.src = newImageURL;
   cardImage.alt = newTitle + " Poster";
+
+  const bullets = card.querySelectorAll("li");
+  bullets[0].textContent = "Make: " + car.make;
+  bullets[1].textContent = "Year: " + car.year;
+  bullets[2].textContent = "Engine: " + car.engine;
+
 
   //creating the button
   const deleteBtn = document.createElement("button");
@@ -111,18 +117,8 @@ function sortZA() {
 // This calls the addCard() function when the page is first loaded
 document.addEventListener("DOMContentLoaded", showCars);
 
-function quoteAlert() {
-  console.log("Button Clicked!");
-  alert(
-    "I guess I can kiss heaven goodbye, because it got to be a sin to look this good!",
-  );
-}
-
+//removs the last car from the array
 function removeLastCar() {
   cars.pop(); // Remove last item in titles array
   showCars(); // Call showCards again to refresh
-}
-
-function deleteCar(){
-
 }
