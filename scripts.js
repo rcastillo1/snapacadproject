@@ -67,7 +67,8 @@ function editCarContent(card, newTitle, newImageURL, car) {
   const cardImage = card.querySelector("img");
   cardImage.src = newImageURL;
   cardImage.alt = newTitle + " Poster";
-
+  
+  //turning all the bullets into objects
   const bullets = card.querySelectorAll("li");
   bullets[0].textContent = "Make: " + car.make;
   bullets[1].textContent = "Year: " + car.year;
