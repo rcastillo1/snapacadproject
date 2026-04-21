@@ -39,7 +39,7 @@ let cars = [
 
 // This function adds cards the page to display the data in the array
 function showCars() {
-  
+
   const cardContainer = document.getElementById("card-container");
   cardContainer.innerHTML = "";
   const templateCard = document.querySelector(".card");
@@ -81,6 +81,16 @@ function sortAZ() {
   cars.sort((a, b) => {
     if (a.model < b.model) return -1;
     if (a.model > b.model) return 1;
+    return 0;
+  });
+  showCars();
+}
+
+// sorts the car decending order
+function sortZA() {
+  cars.sort((a, b) => {
+    if (b.model < a.model) return -1;
+    if (b.model > a.model) return 1;
     return 0;
   });
   showCars();
