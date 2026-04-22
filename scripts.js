@@ -96,22 +96,49 @@ function editCarContent(card, newTitle, newImageURL, car) {
 
 
 //sorts the cars acending order.
+
 function sortAZ() {
-  cars.sort((a, b) => {
-    if (a.model < b.model) return -1;
-    if (a.model > b.model) return 1;
-    return 0;
-  });
+  for (let i = 0; i < cars.length - 1; i++) {
+    // assume the current position has the smallest value
+    let minIndex = i;
+
+    // look through the rest of the array for a smaller value
+    for (let j = i + 1; j < cars.length; j++) {
+      if (cars[j].model < cars[minIndex].model) {
+        minIndex = j;  // found a smaller one, update minIndex
+      }
+    }
+
+    // swap the smallest found with the current position
+    if (minIndex !== i) {
+      let temp = cars[i];
+      cars[i] = cars[minIndex];
+      cars[minIndex] = temp;
+    }
+  }
   showCars();
 }
 
 // sorts the car decending order
 function sortZA() {
-  cars.sort((a, b) => {
-    if (b.model < a.model) return -1;
-    if (b.model > a.model) return 1;
-    return 0;
-  });
+  for (let i = 0; i < cars.length - 1; i++) {
+    // assume the current position has the largest value
+    let maxIndex = i;
+
+    // look through the rest of the array for a larger value
+    for (let j = i + 1; j < cars.length; j++) {
+      if (cars[j].model > cars[maxIndex].model) {
+        maxIndex = j;  // found a larger one, update maxIndex
+      }
+    }
+
+    // swap the largest found with the current position
+    if (maxIndex !== i) {
+      let temp = cars[i];
+      cars[i] = cars[maxIndex];
+      cars[maxIndex] = temp;
+    }
+  }
   showCars();
 }
 
